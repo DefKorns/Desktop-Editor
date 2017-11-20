@@ -1,0 +1,113 @@
+﻿NES
+-----------
+CLV-P-NAAAE - Super Mario Bros.
+CLV-P-NAACE - Super Mario Bros. 3
+CLV-P-NAADE - Super Mario Bros. 2
+CLV-P-NAAEE - Donkey Kong
+CLV-P-NAAFE - Donkey Kong Jr.
+CLV-P-NAAHE - Excitebike
+CLV-P-NAANE - The Legend of Zelda
+CLV-P-NAAPE - Kirby's Adventure
+CLV-P-NAAQE - Metroid
+CLV-P-NAARE - Balloon Fight
+CLV-P-NAASE - Zelda II - The Adventure of Link
+CLV-P-NAATE - Punch-Out!! Featuring Mr. Dream
+CLV-P-NAAUE - Ice Climber
+CLV-P-NAAVE - Kid Icarus
+CLV-P-NAAWE - Mario Bros.
+CLV-P-NAAXE - Dr. MARIO
+CLV-P-NAAZE - StarTropics
+CLV-P-NABBE - MEGA MAN™ 2
+CLV-P-NABCE - GHOSTS'N GOBLINS™
+CLV-P-NABJE - FINAL FANTASY®
+CLV-P-NABKE - BUBBLE BOBBLE
+CLV-P-NABME - PAC-MAN
+CLV-P-NABNE - Galaga
+CLV-P-NABQE - Castlevania
+CLV-P-NABRE - GRADIUS
+CLV-P-NABVE - Super C
+CLV-P-NABXE - Castlevania II Simon's Quest
+CLV-P-NACBE - NINJA GAIDEN
+CLV-P-NACDE - TECMO BOWL
+CLV-P-NACHE - DOUBLE DRAGON II: The Revenge
+
+Famicom
+-----------
+CLV-P-HAAAJ - スーパーマリオブラザーズ
+CLV-P-HAACJ - スーパーマリオブラザーズ３
+CLV-P-HAADJ - スーパーマリオＵＳＡ
+CLV-P-HAAEJ - ドンキーコング
+CLV-P-HAAHJ - エキサイトバイク
+CLV-P-HAAMJ - マリオオープンゴルフ
+CLV-P-HAANJ - ゼルダの伝説
+CLV-P-HAAPJ - 星のカービィ　夢の泉の物語
+CLV-P-HAAQJ - メトロイド
+CLV-P-HAARJ - バルーンファイト
+CLV-P-HAASJ - リンクの冒険
+CLV-P-HAAUJ - アイスクライマー
+CLV-P-HAAWJ - マリオブラザーズ
+CLV-P-HAAXJ - ドクターマリオ
+CLV-P-HABBJ - ロックマン®2 Dr.ワイリーの謎
+CLV-P-HABCJ - 魔界村®
+CLV-P-HABLJ - ファイナルファンタジー®III
+CLV-P-HABMJ - パックマン
+CLV-P-HABNJ - ギャラガ
+CLV-P-HABQJ - 悪魔城ドラキュラ
+CLV-P-HABRJ - グラディウス
+CLV-P-HABVJ - スーパー魂斗羅
+CLV-P-HACAJ - イー・アル・カンフー
+CLV-P-HACBJ - 忍者龍剣伝
+CLV-P-HACCJ - ソロモンの鍵
+CLV-P-HACEJ - つっぱり大相撲
+CLV-P-HACHJ - ダブルドラゴンⅡ The Revenge
+CLV-P-HACJJ - ダウンタウン熱血物語
+CLV-P-HACLJ - ダウンタウン熱血行進曲 それゆけ大運動会
+CLV-P-HACPJ - アトランチスの謎
+
+SNES
+-----------
+CLV-P-SAAAE - Super Mario World
+CLV-P-SAABE - F-ZERO
+CLV-P-SAAEE - The Legend of Zelda: A Link to the Past
+CLV-P-SAAFE - Super Mario Kart
+CLV-P-SAAHE - Super Metroid
+CLV-P-SAAJE - EarthBound
+CLV-P-SAAKE - Kirby's Dream Course
+CLV-P-SAALE - Donkey Kong Country
+CLV-P-SAAQE - Kirby Super Star
+CLV-P-SAAXE - Super Punch-Out!!
+CLV-P-SABCE - Mega Man X
+CLV-P-SABDE - Super Ghouls'n Ghosts
+CLV-P-SABHE - Street Fighter II Turbo: Hyper Fighting
+CLV-P-SABQE - Super Mario RPG: Legend of the Seven Stars
+CLV-P-SABRE - Secret of Mana
+CLV-P-SABTE - Final Fantasy III
+CLV-P-SACBE - Super Castlevania IV
+CLV-P-SACCE - CONTRA III THE ALIEN WARS
+CLV-P-SADGE - Star Fox
+CLV-P-SADJE - Yoshi's Island
+CLV-P-SADKE - Star Fox 2
+
+Super Famicom
+-----------
+CLV-P-VAAAJ - スーパーマリオワールド
+CLV-P-VAABJ - F-ZERO
+CLV-P-VAAEJ - ゼルダの伝説 神々のトライフォース
+CLV-P-VAAFJ - スーパーマリオカート
+CLV-P-VAAGJ - ファイアーエムブレム 紋章の謎
+CLV-P-VAAHJ - スーパーメトロイド
+CLV-P-VAALJ - スーパードンキーコング
+CLV-P-VAAQJ - 星のカービィ スーパーデラックス
+CLV-P-VABBJ - スーパーストリートファイターⅡ ザ ニューチャレンジャーズ
+CLV-P-VABCJ - ロックマンX
+CLV-P-VABDJ - 超魔界村
+CLV-P-VABQJ - スーパーマリオRPG
+CLV-P-VABRJ - 聖剣伝説2
+CLV-P-VABTJ - ファイナルファンタジーVI
+CLV-P-VACCJ - 魂斗羅スピリッツ
+CLV-P-VACDJ - がんばれゴエモン ゆき姫救出絵巻
+CLV-P-VADFJ - スーパーフォーメーションサッカー
+CLV-P-VADGJ - スターフォックス
+CLV-P-VADJJ - スーパーマリオ ヨッシーアイランド
+CLV-P-VADKJ - スターフォックス2
+CLV-P-VADZJ - パネルでポン

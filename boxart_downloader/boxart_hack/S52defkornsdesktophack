@@ -1,0 +1,19 @@
+#!/bin/sh
+
+# Init scripts are executed with "start" argument when system boots and with "stop" argument during shutdown
+# So we need to check that it's boot state, not shutdown
+[ -z "$1" ] || [ "$1" == "start" ] || exit 0
+
+source "/etc/preinit"
+script_init
+ls  -l "$squashfs$gamepath" | grep 'CLV-P-' | awk '{ print $9 }' | while read gamecode; do
+  if [ -f "$rootfs/boxart/$gamecode.png" ]; then
+    mount -o bind "$rootfs/boxart/$gamecode.png" "$squashfs$gamepath/${gamecode}/${gamecode}.png"
+  fi
+  if [ -f "$installpath/boxart/${gamecode}_small.png" ]; then
+    mount -o bind "$rootfs/boxart/${gamecode}_small.png" "$squashfs$gamepath/${gamecode}/${gamecode}_small.png"
+  fi
+  if [ -f "$rootfs/boxart/$gamecode.desktop" ]; then
+    cp -r "$rootfs/boxart/$gamecode.desktop" "$rootfs$gamepath/${gamecode}/${gamecode}.desktop"
+  fi
+done < /dev/stdin

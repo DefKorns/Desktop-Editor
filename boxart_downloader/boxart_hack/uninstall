@@ -1,0 +1,6 @@
+local script="S52defkornsdesktophack"
+rm "$rootfs/etc/init.d/$script"
+rm -r "$rootfs/boxart/"
+
+# Marks this mod as uninstalled
+unset cfg_DefKorns_desktophack_enabled

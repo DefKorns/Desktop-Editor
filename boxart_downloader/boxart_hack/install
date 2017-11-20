@@ -1,0 +1,11 @@
+# 
+# DefKorns Desktop Hack - v0.1 Nov 08, 2017
+#
+# Script based on DNA64 BoxArt_Patch & DanTheMan827 custom_boxart
+ 
+local script="S52defkornsdesktophack"
+copy "$script" "$rootfs/etc/init.d/"
+chmod +x "$rootfs/etc/init.d/$script"
+transfer_default
+cfg_DefKorns_desktophack_enabled='y'
+return 1
