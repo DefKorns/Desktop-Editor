@@ -41,12 +41,23 @@ namespace Desktop_Editor
         }
         private void ButtonGetGames_Click(object sender, EventArgs e)
         {
+            string boxartDirectory = AppDomain.CurrentDomain.BaseDirectory; Path.GetDirectoryName(Assembly.GetExecutingAssembly().Location);
+            string fullboxartPath = new Uri(boxartDirectory).LocalPath + @"boxart_downloader\boxart_hack\boxart";
             Process batch = new Process();
             batch.StartInfo.WorkingDirectory = Path.GetDirectoryName(@".\boxart_downloader\");
             batch.StartInfo.FileName = @"boxart.bat";
             batch.StartInfo.UseShellExecute = true;
             batch.Start();
             batch.WaitForExit();
+            listViewGames.Items.Clear();
+            if (radioButtonSNES.Checked)
+            { 
+            PopulateSNESListView(listViewGames, fullboxartPath, "*.desktop");
+            }
+            if (radioButtonNES.Checked)
+            {
+            PopulateNESListView(listViewGames, fullboxartPath, "*.desktop");
+            }
             // MessageBox.Show("Batch Script Done");
         }
         private void listViewGames_MouseClick(object sender, MouseEventArgs e)
@@ -180,12 +191,12 @@ namespace Desktop_Editor
                 readyToEdit = true;
             }
 
-            string icon = File.ReadAllText(gamesToShow[listViewGames.SelectedItems[0].Index].path);
+            /*string icon = File.ReadAllText(gamesToShow[listViewGames.SelectedItems[0].Index].path);
 
             if (iconReplaced == true)
                 icon = icon.Replace(toReplace + code + "/", "Icon=/var/lib/hakchi/rootfs/boxart/");
 
-            File.WriteAllText(gamesToShow[listViewGames.SelectedItems[0].Index].path, icon);
+            File.WriteAllText(gamesToShow[listViewGames.SelectedItems[0].Index].path, icon);*/
 
 
         }
