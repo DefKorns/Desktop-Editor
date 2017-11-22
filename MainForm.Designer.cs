@@ -164,11 +164,13 @@ namespace Desktop_Editor
             this.listViewGames.HeaderStyle = System.Windows.Forms.ColumnHeaderStyle.None;
             this.listViewGames.HideSelection = false;
             this.listViewGames.Location = new System.Drawing.Point(12, 57);
+            this.listViewGames.MultiSelect = false;
             this.listViewGames.Name = "listViewGames";
             this.listViewGames.Size = new System.Drawing.Size(282, 523);
             this.listViewGames.TabIndex = 7;
             this.listViewGames.UseCompatibleStateImageBehavior = false;
             this.listViewGames.View = System.Windows.Forms.View.Details;
+            this.listViewGames.SelectedIndexChanged += new System.EventHandler(this.listViewGames_SelectedIndexChanged);
             this.listViewGames.MouseClick += new System.Windows.Forms.MouseEventHandler(this.listViewGames_MouseClick);
             // 
             // gameName
@@ -587,7 +589,7 @@ namespace Desktop_Editor
             this.MinimumSize = new System.Drawing.Size(625, 675);
             this.Name = "MainForm";
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
-            this.Text = "Original Desktop Editor 1.10";
+            this.Text = "Original Desktop Editor 1.10.2";
             this.menuStrip1.ResumeLayout(false);
             this.menuStrip1.PerformLayout();
             this.groupBoxOptions.ResumeLayout(false);

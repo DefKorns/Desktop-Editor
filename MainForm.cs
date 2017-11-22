@@ -1,4 +1,3 @@
-//using com.clusterrr.hakchi_gui;
 using System;
 using System.Collections;
 using System.Collections.Generic;
@@ -58,147 +57,10 @@ namespace Desktop_Editor
             {
             PopulateNESListView(listViewGames, fullboxartPath, "*.desktop");
             }
-            // MessageBox.Show("Batch Script Done");
         }
         private void listViewGames_MouseClick(object sender, MouseEventArgs e)
         {
-            readyToEdit = false;
-            FileInfo file = new FileInfo(gamesToShow[listViewGames.SelectedItems[0].Index].path);
-            string line;
-            string code = "";
-            string toReplace = "";
-            bool iconReplaced = false;
-
-            using (StreamReader codeToSearch = new StreamReader(gamesToShow[listViewGames.SelectedItems[0].Index].path))
-
-            {
-                while ((line = codeToSearch.ReadLine()) != null)
-                {
-                    code = file.Name.Remove(11, 8);
-                    if (line.Contains("Name="))
-                    {
-                        string name = line.Remove(0, 5);
-                        textBoxName.Text = name;
-                    }
-                    if (line.Contains("SortRawPublisher="))
-                    {
-                        string publisher = line.Remove(0, 17);
-                        textBoxPublisher.Text = publisher;
-                    }
-                    if (line.Contains("ReleaseDate="))
-                    {
-                        string releasedate = line.Remove(0, 12);
-                        maskedTextBoxReleaseDate.Text = releasedate;
-                    }
-                    if (line.Contains("Code="))
-                    {
-                        string gamecode = line.Remove(0, 5);
-                        textBoxGameCode.Text = gamecode;
-                    }
-                    if (line.Contains("Exec=/usr/bin/clover-kachikachi"))
-                    {
-                        string exec = line.Remove(0, 93);
-                        textBoxArguments.Text = exec;
-                        if (line.Contains("-output-dir"))
-                        {
-                            checkBoxOutpuDir.Checked = true;
-                        }
-                        else
-                        {
-                            checkBoxOutpuDir.Checked = false;
-                        }
-                        if (line.Contains("--volume"))
-                       {
-                          int volumeArgsPosition = line.IndexOf("--volume");
-                           string volumeArgument = line.Substring(volumeArgsPosition, 12);
-                           string[] volume = volumeArgument.Split(null);
-                            comboBoxVol.Text = volume[1];
-                       };
-
-                    }
-                    else if (line.Contains("Exec=/usr/bin/clover-canoe-shvc"))
-                    {
-                        string exec = line.Remove(0, 83);
-                        textBoxArguments.Text = exec;
-                        if (line.Contains("-output-dir"))
-                        {
-                            checkBoxOutpuDir.Checked = true;
-                        }
-                        else
-                        {
-                            checkBoxOutpuDir.Checked = false;
-                        }
-                        if (line.Contains("-no-lowlatency"))
-                        {
-                            checkBoxNoLowLat.Checked = true;
-                        }
-                        else
-                        {
-                            checkBoxNoLowLat.Checked = false;
-                        }
-                        if (line.Contains("--volume"))
-                        {
-                            int volumeArgsPosition = line.IndexOf("--volume");
-                            string volumeArgument = line.Substring(volumeArgsPosition, 12);
-                            string[] volume = volumeArgument.Split(null);
-                            comboBoxVol.Text = volume[1];
-                        }
-                        if (line.Contains("-boost-fx"))
-                        {
-                            int boostfxArgsPosition = line.IndexOf("-boost-fx");
-                            string boosfxArgument = line.Substring(boostfxArgsPosition, 11);
-                            string[] boostfx = boosfxArgument.Split(null);
-                            comboBoxBoostFX.Text = boostfx[1];
-                        }
-                        else
-                        {
-                            comboBoxBoostFX.Text = "";
-                        }
-                    }
-                    if (line.Contains("SortRawTitle="))
-                    {
-                        string sorttitle = line.Remove(0, 13);
-                        textBoxRawTitle.Text = sorttitle;
-                    }
-
-                    if (line.Contains("Icon="))
-                    {
-                        var outPutDirectory = Path.GetDirectoryName(Assembly.GetExecutingAssembly().CodeBase);
-                        var iconPath = Path.Combine(outPutDirectory, @".\boxart_downloader\boxart_hack\boxart\");
-                        string boxart = code + ".png";
-                        pictureBoxArt.ImageLocation = iconPath + boxart;
-                    }
-
-                    if (line.Contains("Icon=/usr/share/games/"))
-                    {
-                        iconReplaced = true;
-                        toReplace = "Icon=/usr/share/games/";
-                    }
-                    if (line.Contains("Icon=/usr/share/games/nes/kachikachi/"))
-                    {
-                        iconReplaced = true;
-                        toReplace = "Icon=/usr/share/games/nes/kachikachi/";
-                    }
-
-                    if (line.Contains("Players=1"))
-                        radioButtonOne.Checked = true;
-                    if (line.Contains("Simultaneous=0"))
-                        radioButtonTwo.Checked = true;
-                    if (line.Contains("Simultaneous=1"))
-                        radioButtonTwoSim.Checked = true;
-                }
-                codeToSearch.Close();
-                readyToEdit = true;
-            }
-
-            /*string icon = File.ReadAllText(gamesToShow[listViewGames.SelectedItems[0].Index].path);
-
-            if (iconReplaced == true)
-                icon = icon.Replace(toReplace + code + "/", "Icon=/var/lib/hakchi/rootfs/boxart/");
-
-            File.WriteAllText(gamesToShow[listViewGames.SelectedItems[0].Index].path, icon);*/
-
-
+            ShowSelected();
         }
         private void checkBoxOutpuDir_CheckedChanged(object sender, EventArgs e)
         {
@@ -374,13 +236,6 @@ namespace Desktop_Editor
                                     path = Folder + "/" + file.Name
                                 };
                                 gamesToShow.Add(game);
-
-                             /*
-                                Games game = new Games();
-                                game.name = name;
-                                game.path = Folder + "/" + file.Name;
-                                gamesToShow.Add(game);    
-                             */
                             }
                         }
                     }
@@ -429,10 +284,6 @@ namespace Desktop_Editor
         }
         private void buttonAddHack_Click(object sender, EventArgs e)
         {
-           /* WaitingClovershellForm settingsForm = new WaitingClovershellForm();
-
-            // Show the settings form
-            settingsForm.Show();*/
             Process batch = new Process();
             batch.StartInfo.WorkingDirectory = Path.GetDirectoryName(@".\boxart_downloader\");
             batch.StartInfo.FileName = @"install.bat";
@@ -440,12 +291,10 @@ namespace Desktop_Editor
             batch.Start();
             batch.WaitForExit();
         }
-
         private void exitToolStripMenuItem1_click(object sender, EventArgs e)
         {
             this.Close();
         }
-
         private void aboutToolStripMenuItem_Click(object sender, EventArgs e)
         {
             var about = new AboutBox
@@ -454,7 +303,6 @@ namespace Desktop_Editor
             };
             about.ShowDialog();
         }
-
         private void fileToolStripMenuItem_Click(object sender, EventArgs e)
         {
             Process batch = new Process();
@@ -464,7 +312,6 @@ namespace Desktop_Editor
             batch.Start();
             batch.WaitForExit();
         }
-
         private void buttonBrowseImage_Click(object sender, EventArgs e)
         {
             openFileDialogImage.Filter = "Images|*.bmp;*.png;*.jpg;*.jpeg;*.gif";
@@ -478,7 +325,7 @@ namespace Desktop_Editor
                 var image = Image.FromFile(openFileDialogImage.FileName);
                 var newImage = ScaleImage(image, 228, 204);
                 var newImage_small = ScaleImage(image, 40, 40);
-                image.Dispose();//Add this to your code
+                image.Dispose();
                 newImage.Save(fullboxartPath + code + ".png");
                 newImage_small.Save(fullboxartPath + code + "_small.png");
                 pictureBoxArt.Image = newImage;
@@ -501,6 +348,53 @@ namespace Desktop_Editor
             return newImage;
         }
 
+       /* private void SetImage(Image image, bool EightBitCompression = false)
+        {
+            Bitmap outImage;
+            Bitmap outImageSmall;
+            Graphics gr;
+
+            // Just keep aspect ratio
+            int maxX = 204;
+            int maxY = 204;
+            if (radioButtonSNES.Checked)
+            {
+                maxX = 228;
+                maxY = 204;
+            }
+            if ((double)image.Width / (double)image.Height > (double)maxX / (double)maxY)
+                outImage = new Bitmap(maxX, (int)((double)maxX * (double)image.Height / (double)image.Width));
+            else
+                outImage = new Bitmap((int)(maxY * (double)image.Width / (double)image.Height), maxY);
+
+            int maxXsmall = 40;
+            int maxYsmall = 40;
+            if ((double)image.Width / (double)image.Height > (double)maxXsmall / (double)maxYsmall)
+                outImageSmall = new Bitmap(maxXsmall, (int)((double)maxXsmall * (double)image.Height / (double)image.Width));
+            else
+                outImageSmall = new Bitmap((int)(maxYsmall * (double)image.Width / (double)image.Height), maxYsmall);
+
+            gr = Graphics.FromImage(outImage);
+            gr.CompositingQuality = System.Drawing.Drawing2D.CompositingQuality.HighQuality;
+            gr.DrawImage(image, new Rectangle(0, 0, outImage.Width, outImage.Height),
+                                new Rectangle(0, 0, image.Width, image.Height), GraphicsUnit.Pixel);
+            gr.Flush();
+            outImage.Save(IconPath, ImageFormat.Png);
+            gr = Graphics.FromImage(outImageSmall);
+
+            // Better resizing quality (more blur like original files)
+            gr.InterpolationMode = System.Drawing.Drawing2D.InterpolationMode.HighQualityBicubic;
+            gr.CompositingQuality = System.Drawing.Drawing2D.CompositingQuality.HighQuality;
+            // Fix first line and column alpha shit
+            using (ImageAttributes wrapMode = new ImageAttributes())
+            {
+                wrapMode.SetWrapMode(System.Drawing.Drawing2D.WrapMode.TileFlipXY);
+                gr.DrawImage(outImage, new Rectangle(0, 0, outImageSmall.Width, outImageSmall.Height), 0, 0, outImage.Width, outImage.Height, GraphicsUnit.Pixel, wrapMode);
+            }
+            gr.Flush();
+            outImageSmall.Save(SmallIconPath, ImageFormat.Png);
+        }*/
+
         private void textBoxName_TextChanged(object sender, EventArgs e)
         {
             if (readyToEdit)
@@ -518,7 +412,6 @@ namespace Desktop_Editor
                 listViewGames.SelectedItems[0].Text = textBoxName.Text;
             }
         }
-
         private void textBoxRawTitle_TextChanged(object sender, EventArgs e)
         {
             if (readyToEdit)
@@ -543,7 +436,6 @@ namespace Desktop_Editor
   
             }
         }
-
         private void textBoxPublisher_TextChanged(object sender, EventArgs e)
         {
             if (readyToEdit)
@@ -562,7 +454,6 @@ namespace Desktop_Editor
                 File.WriteAllLines(gamesToShow[listViewGames.SelectedItems[0].Index].path, publisher);
             }
         }
-
         private void textBoxArguments_TextChanged(object sender, EventArgs e)
         {
             if (readyToEdit)
@@ -583,7 +474,6 @@ namespace Desktop_Editor
                 File.WriteAllLines(gamesToShow[listViewGames.SelectedItems[0].Index].path, args);
             }
         }
-
         private void maskedTextBoxReleaseDate_TextChanged(object sender, EventArgs e)
         {
             if (readyToEdit)
@@ -602,12 +492,10 @@ namespace Desktop_Editor
                     File.WriteAllLines(gamesToShow[listViewGames.SelectedItems[0].Index].path, relDate);
                 }
             }
-
         private void radioButtonOne_CheckedChanged(object sender, EventArgs e)
         {
             if (readyToEdit)
             {
-                //radioButtonOne.Checked = true;
                 string currentString = textBoxArguments.Text.Substring(0, textBoxArguments.Text.Length - 1);
                 string[] player = File.ReadAllLines(gamesToShow[listViewGames.SelectedItems[0].Index].path);
                 if (player[2].Contains("Exec=/usr/bin/clover-kachikachi"))
@@ -623,12 +511,10 @@ namespace Desktop_Editor
                 File.WriteAllLines(gamesToShow[listViewGames.SelectedItems[0].Index].path, player);
             }
         }
-
         private void radioButtonTwo_CheckedChanged(object sender, EventArgs e)
         {
             if (readyToEdit)
             {
-              //  radioButtonTwoSim.Checked = true;
                 string currentString = textBoxArguments.Text.Substring(0, textBoxArguments.Text.Length - 1);
                 string[] multiplayer = File.ReadAllLines(gamesToShow[listViewGames.SelectedItems[0].Index].path);
                 if (multiplayer[2].Contains("Exec=/usr/bin/clover-kachikachi"))
@@ -644,12 +530,10 @@ namespace Desktop_Editor
                 File.WriteAllLines(gamesToShow[listViewGames.SelectedItems[0].Index].path, multiplayer);
             }
         }
-
         private void radioButtonTwoSim_CheckedChanged(object sender, EventArgs e)
         {
             if (readyToEdit)
             {
-               // radioButtonTwo.Checked = true;
                 string currentString = textBoxArguments.Text.Substring(0, textBoxArguments.Text.Length - 1);
                 string[] playerSim = File.ReadAllLines(gamesToShow[listViewGames.SelectedItems[0].Index].path);
                 if (playerSim[2].Contains("Exec=/usr/bin/clover-kachikachi"))
@@ -665,6 +549,130 @@ namespace Desktop_Editor
                 File.WriteAllLines(gamesToShow[listViewGames.SelectedItems[0].Index].path, playerSim);
             }
 
+        }
+        public void ShowSelected()
+        {
+            readyToEdit = false;
+            FileInfo file = new FileInfo(gamesToShow[listViewGames.SelectedItems[0].Index].path);
+            string line;
+            string code = "";
+
+            using (StreamReader codeToSearch = new StreamReader(gamesToShow[listViewGames.SelectedItems[0].Index].path))
+
+            {
+                while ((line = codeToSearch.ReadLine()) != null)
+                {
+                    code = file.Name.Remove(11, 8);
+                    if (line.Contains("Name="))
+                    {
+                        string name = line.Remove(0, 5);
+                        textBoxName.Text = name;
+                    }
+                    if (line.Contains("SortRawPublisher="))
+                    {
+                        string publisher = line.Remove(0, 17);
+                        textBoxPublisher.Text = publisher;
+                    }
+                    if (line.Contains("ReleaseDate="))
+                    {
+                        string releasedate = line.Remove(0, 12);
+                        maskedTextBoxReleaseDate.Text = releasedate;
+                    }
+                    if (line.Contains("Code="))
+                    {
+                        string gamecode = line.Remove(0, 5);
+                        textBoxGameCode.Text = gamecode;
+                    }
+                    if (line.Contains("Exec=/usr/bin/clover-kachikachi"))
+                    {
+                        string exec = line.Remove(0, 93);
+                        textBoxArguments.Text = exec;
+                        if (line.Contains("-output-dir"))
+                        {
+                            checkBoxOutpuDir.Checked = true;
+                        }
+                        else
+                        {
+                            checkBoxOutpuDir.Checked = false;
+                        }
+                        if (line.Contains("--volume"))
+                        {
+                            int volumeArgsPosition = line.IndexOf("--volume");
+                            string volumeArgument = line.Substring(volumeArgsPosition, 12);
+                            string[] volume = volumeArgument.Split(null);
+                            comboBoxVol.Text = volume[1];
+                        };
+
+                    }
+                    else if (line.Contains("Exec=/usr/bin/clover-canoe-shvc"))
+                    {
+                        string exec = line.Remove(0, 83);
+                        textBoxArguments.Text = exec;
+                        if (line.Contains("-output-dir"))
+                        {
+                            checkBoxOutpuDir.Checked = true;
+                        }
+                        else
+                        {
+                            checkBoxOutpuDir.Checked = false;
+                        }
+                        if (line.Contains("-no-lowlatency"))
+                        {
+                            checkBoxNoLowLat.Checked = true;
+                        }
+                        else
+                        {
+                            checkBoxNoLowLat.Checked = false;
+                        }
+                        if (line.Contains("--volume"))
+                        {
+                            int volumeArgsPosition = line.IndexOf("--volume");
+                            string volumeArgument = line.Substring(volumeArgsPosition, 12);
+                            string[] volume = volumeArgument.Split(null);
+                            comboBoxVol.Text = volume[1];
+                        }
+                        if (line.Contains("-boost-fx"))
+                        {
+                            int boostfxArgsPosition = line.IndexOf("-boost-fx");
+                            string boosfxArgument = line.Substring(boostfxArgsPosition, 11);
+                            string[] boostfx = boosfxArgument.Split(null);
+                            comboBoxBoostFX.Text = boostfx[1];
+                        }
+                        else
+                        {
+                            comboBoxBoostFX.Text = "";
+                        }
+                    }
+                    if (line.Contains("SortRawTitle="))
+                    {
+                        string sorttitle = line.Remove(0, 13);
+                        textBoxRawTitle.Text = sorttitle;
+                    }
+
+                    if (line.Contains("Icon="))
+                    {
+                        var outPutDirectory = Path.GetDirectoryName(Assembly.GetExecutingAssembly().CodeBase);
+                        var iconPath = Path.Combine(outPutDirectory, @".\boxart_downloader\boxart_hack\boxart\");
+                        string boxart = code + ".png";
+                        pictureBoxArt.ImageLocation = iconPath + boxart;
+                    }
+
+                    if (line.Contains("Players=1"))
+                        radioButtonOne.Checked = true;
+                    if (line.Contains("Simultaneous=0"))
+                        radioButtonTwo.Checked = true;
+                    if (line.Contains("Simultaneous=1"))
+                        radioButtonTwoSim.Checked = true;
+                }
+                codeToSearch.Close();
+                readyToEdit = true;
+            }
+        }
+        private void listViewGames_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            if (this.listViewGames.SelectedItems.Count == 0)
+                return;
+            ShowSelected();
         }
     }
 }
