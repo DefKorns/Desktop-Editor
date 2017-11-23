@@ -80,6 +80,8 @@ namespace Desktop_Editor
             this.buttonAddHack = new System.Windows.Forms.Button();
             this.openFileDialogNes = new System.Windows.Forms.OpenFileDialog();
             this.openFileDialogImage = new System.Windows.Forms.OpenFileDialog();
+            this.importFrame = new System.Windows.Forms.Button();
+            this.checkBoxFrame = new System.Windows.Forms.CheckBox();
             this.menuStrip1.SuspendLayout();
             this.groupBoxOptions.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBoxArt)).BeginInit();
@@ -180,6 +182,8 @@ namespace Desktop_Editor
             // 
             // groupBoxOptions
             // 
+            this.groupBoxOptions.Controls.Add(this.checkBoxFrame);
+            this.groupBoxOptions.Controls.Add(this.importFrame);
             this.groupBoxOptions.Controls.Add(this.buttonBrowseImage);
             this.groupBoxOptions.Controls.Add(this.comboBoxBoostFX);
             this.groupBoxOptions.Controls.Add(this.textBoxGameCode);
@@ -237,7 +241,7 @@ namespace Desktop_Editor
             "6",
             "7",
             "8"});
-            this.comboBoxBoostFX.Location = new System.Drawing.Point(163, 344);
+            this.comboBoxBoostFX.Location = new System.Drawing.Point(163, 315);
             this.comboBoxBoostFX.Name = "comboBoxBoostFX";
             this.comboBoxBoostFX.Size = new System.Drawing.Size(41, 21);
             this.comboBoxBoostFX.TabIndex = 30;
@@ -264,7 +268,7 @@ namespace Desktop_Editor
             // label7
             // 
             this.label7.AutoSize = true;
-            this.label7.Location = new System.Drawing.Point(210, 349);
+            this.label7.Location = new System.Drawing.Point(210, 320);
             this.label7.Name = "label7";
             this.label7.Size = new System.Drawing.Size(47, 13);
             this.label7.TabIndex = 27;
@@ -295,7 +299,7 @@ namespace Desktop_Editor
             "90",
             "95",
             "100"});
-            this.comboBoxVol.Location = new System.Drawing.Point(64, 344);
+            this.comboBoxVol.Location = new System.Drawing.Point(64, 315);
             this.comboBoxVol.Name = "comboBoxVol";
             this.comboBoxVol.Size = new System.Drawing.Size(41, 21);
             this.comboBoxVol.TabIndex = 25;
@@ -304,7 +308,7 @@ namespace Desktop_Editor
             // label6
             // 
             this.label6.AutoSize = true;
-            this.label6.Location = new System.Drawing.Point(108, 347);
+            this.label6.Location = new System.Drawing.Point(108, 318);
             this.label6.Name = "label6";
             this.label6.Size = new System.Drawing.Size(47, 13);
             this.label6.TabIndex = 24;
@@ -314,7 +318,7 @@ namespace Desktop_Editor
             // 
             this.checkBoxEpilepsy.AccessibleDescription = "Activate Flash/Patterns compensation filter";
             this.checkBoxEpilepsy.AutoSize = true;
-            this.checkBoxEpilepsy.Location = new System.Drawing.Point(8, 346);
+            this.checkBoxEpilepsy.Location = new System.Drawing.Point(8, 317);
             this.checkBoxEpilepsy.Name = "checkBoxEpilepsy";
             this.checkBoxEpilepsy.Size = new System.Drawing.Size(47, 17);
             this.checkBoxEpilepsy.TabIndex = 23;
@@ -327,7 +331,7 @@ namespace Desktop_Editor
             this.checkBoxRetroarch.AccessibleDescription = "Enables Retroarch (if installed)";
             this.checkBoxRetroarch.AccessibleName = "Retroarch";
             this.checkBoxRetroarch.AutoSize = true;
-            this.checkBoxRetroarch.Location = new System.Drawing.Point(197, 318);
+            this.checkBoxRetroarch.Location = new System.Drawing.Point(197, 289);
             this.checkBoxRetroarch.Name = "checkBoxRetroarch";
             this.checkBoxRetroarch.Size = new System.Drawing.Size(74, 17);
             this.checkBoxRetroarch.TabIndex = 22;
@@ -340,7 +344,7 @@ namespace Desktop_Editor
             this.checkBoxOutpuDir.AccessibleDescription = "Specify where output files are written";
             this.checkBoxOutpuDir.AccessibleName = "Output dir";
             this.checkBoxOutpuDir.AutoSize = true;
-            this.checkBoxOutpuDir.Location = new System.Drawing.Point(121, 318);
+            this.checkBoxOutpuDir.Location = new System.Drawing.Point(121, 289);
             this.checkBoxOutpuDir.Name = "checkBoxOutpuDir";
             this.checkBoxOutpuDir.Size = new System.Drawing.Size(73, 17);
             this.checkBoxOutpuDir.TabIndex = 21;
@@ -353,7 +357,7 @@ namespace Desktop_Editor
             this.checkBoxNoLowLat.AccessibleDescription = "Render in a separate thread, to accommodate \"slow\" titles.";
             this.checkBoxNoLowLat.AccessibleName = "No Low Latency";
             this.checkBoxNoLowLat.AutoSize = true;
-            this.checkBoxNoLowLat.Location = new System.Drawing.Point(8, 318);
+            this.checkBoxNoLowLat.Location = new System.Drawing.Point(8, 289);
             this.checkBoxNoLowLat.Name = "checkBoxNoLowLat";
             this.checkBoxNoLowLat.Size = new System.Drawing.Size(94, 17);
             this.checkBoxNoLowLat.TabIndex = 20;
@@ -364,7 +368,7 @@ namespace Desktop_Editor
             // label4
             // 
             this.label4.AutoSize = true;
-            this.label4.Location = new System.Drawing.Point(15, 302);
+            this.label4.Location = new System.Drawing.Point(15, 273);
             this.label4.Name = "label4";
             this.label4.Size = new System.Drawing.Size(219, 13);
             this.label4.TabIndex = 19;
@@ -372,7 +376,7 @@ namespace Desktop_Editor
             // 
             // textBoxArguments
             // 
-            this.textBoxArguments.Location = new System.Drawing.Point(18, 275);
+            this.textBoxArguments.Location = new System.Drawing.Point(18, 241);
             this.textBoxArguments.Name = "textBoxArguments";
             this.textBoxArguments.ReadOnly = true;
             this.textBoxArguments.Size = new System.Drawing.Size(257, 20);
@@ -382,7 +386,7 @@ namespace Desktop_Editor
             // label3
             // 
             this.label3.AutoSize = true;
-            this.label3.Location = new System.Drawing.Point(15, 258);
+            this.label3.Location = new System.Drawing.Point(15, 224);
             this.label3.Name = "label3";
             this.label3.Size = new System.Drawing.Size(76, 13);
             this.label3.TabIndex = 17;
@@ -390,7 +394,7 @@ namespace Desktop_Editor
             // 
             // maskedTextBoxReleaseDate
             // 
-            this.maskedTextBoxReleaseDate.Location = new System.Drawing.Point(171, 193);
+            this.maskedTextBoxReleaseDate.Location = new System.Drawing.Point(171, 169);
             this.maskedTextBoxReleaseDate.Mask = "0000-00-00";
             this.maskedTextBoxReleaseDate.Name = "maskedTextBoxReleaseDate";
             this.maskedTextBoxReleaseDate.Size = new System.Drawing.Size(65, 20);
@@ -399,7 +403,7 @@ namespace Desktop_Editor
             // 
             // textBoxPublisher
             // 
-            this.textBoxPublisher.Location = new System.Drawing.Point(71, 225);
+            this.textBoxPublisher.Location = new System.Drawing.Point(71, 196);
             this.textBoxPublisher.Name = "textBoxPublisher";
             this.textBoxPublisher.Size = new System.Drawing.Size(204, 20);
             this.textBoxPublisher.TabIndex = 15;
@@ -408,7 +412,7 @@ namespace Desktop_Editor
             // label1
             // 
             this.label1.AutoSize = true;
-            this.label1.Location = new System.Drawing.Point(15, 196);
+            this.label1.Location = new System.Drawing.Point(15, 172);
             this.label1.Name = "label1";
             this.label1.Size = new System.Drawing.Size(150, 13);
             this.label1.TabIndex = 14;
@@ -417,7 +421,7 @@ namespace Desktop_Editor
             // label2
             // 
             this.label2.AutoSize = true;
-            this.label2.Location = new System.Drawing.Point(15, 228);
+            this.label2.Location = new System.Drawing.Point(15, 199);
             this.label2.Name = "label2";
             this.label2.Size = new System.Drawing.Size(53, 13);
             this.label2.TabIndex = 13;
@@ -426,7 +430,7 @@ namespace Desktop_Editor
             // radioButtonTwoSim
             // 
             this.radioButtonTwoSim.AutoSize = true;
-            this.radioButtonTwoSim.Location = new System.Drawing.Point(103, 152);
+            this.radioButtonTwoSim.Location = new System.Drawing.Point(103, 144);
             this.radioButtonTwoSim.Name = "radioButtonTwoSim";
             this.radioButtonTwoSim.Size = new System.Drawing.Size(149, 17);
             this.radioButtonTwoSim.TabIndex = 12;
@@ -438,7 +442,7 @@ namespace Desktop_Editor
             // radioButtonTwo
             // 
             this.radioButtonTwo.AutoSize = true;
-            this.radioButtonTwo.Location = new System.Drawing.Point(103, 133);
+            this.radioButtonTwo.Location = new System.Drawing.Point(103, 125);
             this.radioButtonTwo.Name = "radioButtonTwo";
             this.radioButtonTwo.Size = new System.Drawing.Size(167, 17);
             this.radioButtonTwo.TabIndex = 11;
@@ -450,7 +454,7 @@ namespace Desktop_Editor
             // radioButtonOne
             // 
             this.radioButtonOne.AutoSize = true;
-            this.radioButtonOne.Location = new System.Drawing.Point(103, 114);
+            this.radioButtonOne.Location = new System.Drawing.Point(103, 106);
             this.radioButtonOne.Name = "radioButtonOne";
             this.radioButtonOne.Size = new System.Drawing.Size(86, 17);
             this.radioButtonOne.TabIndex = 10;
@@ -463,7 +467,7 @@ namespace Desktop_Editor
             // 
             this.labelMaxPlayers.AutoSize = true;
             this.labelMaxPlayers.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
-            this.labelMaxPlayers.Location = new System.Drawing.Point(15, 115);
+            this.labelMaxPlayers.Location = new System.Drawing.Point(15, 107);
             this.labelMaxPlayers.Name = "labelMaxPlayers";
             this.labelMaxPlayers.Size = new System.Drawing.Size(67, 13);
             this.labelMaxPlayers.TabIndex = 9;
@@ -472,7 +476,7 @@ namespace Desktop_Editor
             // labelRawTitle
             // 
             this.labelRawTitle.AutoSize = true;
-            this.labelRawTitle.Location = new System.Drawing.Point(15, 80);
+            this.labelRawTitle.Location = new System.Drawing.Point(15, 75);
             this.labelRawTitle.Name = "labelRawTitle";
             this.labelRawTitle.Size = new System.Drawing.Size(29, 13);
             this.labelRawTitle.TabIndex = 8;
@@ -481,7 +485,7 @@ namespace Desktop_Editor
             // textBoxRawTitle
             // 
             this.textBoxRawTitle.CharacterCasing = System.Windows.Forms.CharacterCasing.Lower;
-            this.textBoxRawTitle.Location = new System.Drawing.Point(59, 77);
+            this.textBoxRawTitle.Location = new System.Drawing.Point(59, 72);
             this.textBoxRawTitle.Name = "textBoxRawTitle";
             this.textBoxRawTitle.Size = new System.Drawing.Size(216, 20);
             this.textBoxRawTitle.TabIndex = 7;
@@ -572,6 +576,28 @@ namespace Desktop_Editor
             // 
             this.openFileDialogNes.Multiselect = true;
             // 
+            // importFrame
+            // 
+            this.importFrame.Enabled = false;
+            this.importFrame.Location = new System.Drawing.Point(138, 340);
+            this.importFrame.Name = "importFrame";
+            this.importFrame.Size = new System.Drawing.Size(77, 24);
+            this.importFrame.TabIndex = 32;
+            this.importFrame.Text = "Import Frame";
+            this.importFrame.UseVisualStyleBackColor = true;
+            this.importFrame.Click += new System.EventHandler(this.importFrame_Click);
+            // 
+            // checkBoxFrame
+            // 
+            this.checkBoxFrame.AutoSize = true;
+            this.checkBoxFrame.Location = new System.Drawing.Point(8, 345);
+            this.checkBoxFrame.Name = "checkBoxFrame";
+            this.checkBoxFrame.Size = new System.Drawing.Size(131, 17);
+            this.checkBoxFrame.TabIndex = 33;
+            this.checkBoxFrame.Text = "--use-decorative-frame";
+            this.checkBoxFrame.UseVisualStyleBackColor = true;
+            this.checkBoxFrame.CheckedChanged += new System.EventHandler(this.checkBoxFrame_CheckedChanged);
+            // 
             // MainForm
             // 
             this.ClientSize = new System.Drawing.Size(609, 636);
@@ -648,6 +674,8 @@ namespace Desktop_Editor
         private OpenFileDialog openFileDialogNes;
         private Button buttonBrowseImage;
         private OpenFileDialog openFileDialogImage;
+        private Button importFrame;
+        private CheckBox checkBoxFrame;
     }
 }
 

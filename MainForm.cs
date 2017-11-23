@@ -123,7 +123,7 @@ namespace Desktop_Editor
             if (fullArguments.Contains("--volume"))
             {
                 volumeArgsPosition = fullArguments.IndexOf("--volume");
-                volumeArgument = fullArguments.Substring(volumeArgsPosition, 12);
+                volumeArgument = fullArguments.Substring(volumeArgsPosition);
             }
             if (comboBoxVol.SelectedItem.ToString().Equals("0"))
             {
@@ -137,7 +137,8 @@ namespace Desktop_Editor
                 }
                 else
                 {
-                    textBoxArguments.Text = textBoxArguments.Text.Replace(volumeArgument, "--volume " + comboBoxVol.SelectedItem.ToString() + " ");
+                    string[] volumethingy = volumeArgument.Split(new char[] { ' ' }, StringSplitOptions.RemoveEmptyEntries);
+                    textBoxArguments.Text = textBoxArguments.Text.Replace(volumethingy[0] + " " + volumethingy[1], "--volume " + comboBoxVol.SelectedItem.ToString());
                 }
             }
         }
@@ -265,6 +266,8 @@ namespace Desktop_Editor
             checkBoxOutpuDir.Enabled = true;
             checkBoxNoLowLat.Enabled = true;
             comboBoxBoostFX.Enabled = true;
+            label7.Enabled = true;
+            checkBoxFrame.Enabled = true;
             comboBoxVol.Enabled = true;
             string boxartDirectory = AppDomain.CurrentDomain.BaseDirectory; Path.GetDirectoryName(Assembly.GetExecutingAssembly().Location);
             string fullboxartPath = new Uri(boxartDirectory).LocalPath + @"boxart_downloader\boxart_hack\boxart";
@@ -276,7 +279,9 @@ namespace Desktop_Editor
             checkBoxEpilepsy.Enabled = false;
             checkBoxOutpuDir.Enabled = false;
             checkBoxNoLowLat.Enabled = false;
+            checkBoxFrame.Enabled = false;
             comboBoxBoostFX.Enabled = false;
+            label7.Enabled = false;
             comboBoxVol.Enabled = true;
             string boxartDirectory = AppDomain.CurrentDomain.BaseDirectory; Path.GetDirectoryName(Assembly.GetExecutingAssembly().Location);
             string fullboxartPath = new Uri(boxartDirectory).LocalPath + @"boxart_downloader\boxart_hack\boxart";
@@ -598,9 +603,10 @@ namespace Desktop_Editor
                         if (line.Contains("--volume"))
                         {
                             int volumeArgsPosition = line.IndexOf("--volume");
-                            string volumeArgument = line.Substring(volumeArgsPosition, 12);
-                            string[] volume = volumeArgument.Split(null);
+                            var volumeArgument = line.Substring(volumeArgsPosition);
+                            string[] volume = volumeArgument.Split(new char[] { ' ' }, StringSplitOptions.RemoveEmptyEntries);
                             comboBoxVol.Text = volume[1];
+                           // MessageBox.Show();
                         };
 
                     }
@@ -627,8 +633,11 @@ namespace Desktop_Editor
                         if (line.Contains("--volume"))
                         {
                             int volumeArgsPosition = line.IndexOf("--volume");
-                            string volumeArgument = line.Substring(volumeArgsPosition, 12);
-                            string[] volume = volumeArgument.Split(null);
+                            /*string volumeArgument = line.Substring(volumeArgsPosition, 12);
+                            string[] volume = volumeArgument.Split(null);*/
+                            var volumeArgument = line.Substring(volumeArgsPosition);
+                            string[] volume = volumeArgument.Split(new char[] { ' ' }, StringSplitOptions.RemoveEmptyEntries);
+                            //MessageBox.Show(volume[1]);
                             comboBoxVol.Text = volume[1];
                         }
                         if (line.Contains("-boost-fx"))
@@ -673,6 +682,49 @@ namespace Desktop_Editor
             if (this.listViewGames.SelectedItems.Count == 0)
                 return;
             ShowSelected();
+        }
+        private void importFrame_Click(object sender, EventArgs e)
+        {
+            
+            OpenFileDialog customBorder = new OpenFileDialog();
+            customBorder.Filter = "Custom frames|*.png;*.txt";
+            customBorder.Multiselect = true;
+            if (DialogResult.OK == customBorder.ShowDialog())
+            {
+                string customBorderDirectory = AppDomain.CurrentDomain.BaseDirectory; Path.GetDirectoryName(Assembly.GetExecutingAssembly().Location);
+                string fullborderPath = new Uri(customBorderDirectory).LocalPath + @"boxart_downloader\borders\";
+                foreach (string file in customBorder.FileNames)
+                {
+                    File.Copy(file, Path.Combine(fullborderPath, Path.GetFileName(file)), true);
+                    //string lulu = Path.GetFileName(file);
+                    string lulu = Path.GetFileNameWithoutExtension(file);
+                    string[] bilulu = lulu.Split('_');
+                    MessageBox.Show(bilulu[0]);
+
+                    /*
+                 string lulu = Path.GetFileName(file);
+                            string[] volume = volumeArgument.Split(null);
+                    */
+                     if (!textBoxArguments.Text.Contains(" --use-decorative-frame /var/lib/hakchi/rootfs/usr/share/borders/" + bilulu[0] + "_" + bilulu[1] + "_" + bilulu[2]))
+                         textBoxArguments.AppendText(" --use-decorative-frame /var/lib/hakchi/rootfs/usr/share/borders/" + bilulu[0] + "_" + bilulu[1] + "_" + bilulu[2]);
+                }
+            }
+        }
+        private void checkBoxFrame_CheckedChanged(object sender, EventArgs e)
+        {
+            if (checkBoxFrame.Checked == false)
+            {
+                importFrame.Enabled = false;
+              /*  if (textBoxArguments.Text.Contains(" --use-decorative-frame /var/lib/hakchi/rootfs/usr/share/borders/" + "CUSTOMBORDER"))
+                    textBoxArguments.Text = textBoxArguments.Text.Replace(" --use-decorative-frame /var/lib/hakchi/rootfs/usr/share/borders/" + "CUSTOMBORDER", "");*/
+            }
+            if (checkBoxFrame.Checked == true)
+            {
+                importFrame.Enabled = true;
+              /*  if (!textBoxArguments.Text.Contains(" --use-decorative-frame /var/lib/hakchi/rootfs/usr/share/borders/" + "CUSTOMBORDER"))
+                    textBoxArguments.AppendText(" --use-decorative-frame /var/lib/hakchi/rootfs/usr/share/borders/" + "CUSTOMBORDER");*/
+            }
+
         }
     }
 }
