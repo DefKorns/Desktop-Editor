@@ -18,4 +18,4 @@ choice /d y /t 5 > nul
 tools\clovershell.exe exec "rm /var/lib/hakchi/rootfs/etc/init.d/S52defkornsdesktophack"
 tools\clovershell.exe exec "rm -r /var/lib/hakchi/rootfs/boxart/"
 tools\clovershell.exe exec "unset cfg_DefKorns_desktophack_enabled"
-tools\clovershell.exe exec "cat /etc/issue" > tools\version
+tools\clovershell.exe exec "rm -r /var/lib/hakchi/rootfs/borders/"

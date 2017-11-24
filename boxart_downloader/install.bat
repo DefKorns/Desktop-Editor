@@ -13,13 +13,23 @@ for /f "delims=: tokens=*" %%A in ('findstr /b ::: "%~f0"') do @echo(%%A
 set OLDPATH=%PATH%
 set PATH=%PATH%;..\tools
 echo Make sure that your SNES/NES Mini Classic is connected to PC and turned on, also close hakchi2 if it's opened.
-choice /d y /t 5 > nul
+rem choice /d y /t 5 > nul
 @echo off
-if NOT ERRORLEVEL 0 goto install
+if NOT ERRORLEVEL 0 goto customframes
 tools\clovershell.exe exec "rm /var/lib/hakchi/rootfs/etc/init.d/S52defkornsdesktophack"
 tools\clovershell.exe exec "rm -r /var/lib/hakchi/rootfs/boxart/"
 tools\clovershell.exe exec "unset cfg_DefKorns_desktophack_enabled"
 tools\clovershell.exe exec "cat /etc/issue" > tools\version
+:customframes
+@echo off
+@start /wait FIND /C /I "--use-decorative" boxart_hack\boxart\*.desktop
+if %errorlevel% equ 0 goto packaging
+goto install
+:packaging
+ECHO Packaging custom frames
+tools\bsdtar.exe -czvf borders.tar.gz borders/
+tools\clovershell.exe exec "cd /var/lib/hakchi/rootfs && tar -xzv" borders.tar.gz 2>NUL
+goto install
 :install
 FOR /F "tokens=4 delims= " %%a IN (tools\version) DO CALL :CHECKVERSION %%a %%b
 :CHECKVERSION 
@@ -72,5 +82,6 @@ tools\clovershell.exe exec "cfg_DefKorns_desktophack_enabled='y'" 2>NUL
 GOTO EOF
 :EOF
 if EXIST boxart.tar.gz del boxart.tar.gz
+if EXIST borders.tar.gz del borders.tar.gz
 set PATH=%OLDPATH%
 pause
