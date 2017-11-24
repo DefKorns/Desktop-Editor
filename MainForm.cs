@@ -624,6 +624,14 @@ namespace Desktop_Editor
                         {
                             checkBoxOutpuDir.Checked = false;
                         }
+                        if (line.Contains("--use-decorative-frame"))
+                        {
+                            checkBoxFrame.Checked = true;
+                        }
+                        else
+                        {
+                            checkBoxFrame.Checked = false;
+                        }
                         if (line.Contains("-no-lowlatency"))
                         {
                             checkBoxNoLowLat.Checked = true;
@@ -702,13 +710,13 @@ namespace Desktop_Editor
                     string[] customBorderName = bordersGet.Split(splitter, StringSplitOptions.RemoveEmptyEntries);
                     if (comboBoxBorder.SelectedIndex == 0)
                     {
-                        if (!textBoxArguments.Text.Contains(" --use-decorative-frame /var/lib/hakchi/rootfs/usr/share/borders/" + customBorderName[0] + "_4_3"))
-                            textBoxArguments.AppendText(" --use-decorative-frame /var/lib/hakchi/rootfs/usr/share/borders/" + customBorderName[0] + "_4_3");
+                        if (!textBoxArguments.Text.Contains(" --use-decorative-frame /var/lib/hakchi/rootfs/borders/" + customBorderName[0] + "_4_3"))
+                            textBoxArguments.AppendText(" --use-decorative-frame /var/lib/hakchi/rootfs/borders/" + customBorderName[0] + "_4_3");
                     }
                     else 
                     {
-                        if (!textBoxArguments.Text.Contains(" --use-decorative-frame /var/lib/hakchi/rootfs/usr/share/borders/" + customBorderName[0] + "_pixel_perfect"))
-                            textBoxArguments.AppendText(" --use-decorative-frame /var/lib/hakchi/rootfs/usr/share/borders/" + customBorderName[0] + "_pixel_perfect");
+                        if (!textBoxArguments.Text.Contains(" --use-decorative-frame /var/lib/hakchi/rootfs/borders/" + customBorderName[0] + "_pixel_perfect"))
+                            textBoxArguments.AppendText(" --use-decorative-frame /var/lib/hakchi/rootfs/borders/" + customBorderName[0] + "_pixel_perfect");
                     }
                 }
             }
@@ -755,6 +763,15 @@ namespace Desktop_Editor
                     textBoxArguments.Text = textBoxArguments.Text.Replace("_pixel_perfect", "_4_3");
                 }
             }
+        }
+
+        private void MainForm_Load(object sender, EventArgs e)
+        {
+            System.Reflection.Assembly assembly = System.Reflection.Assembly.GetExecutingAssembly();
+            FileVersionInfo fvi = FileVersionInfo.GetVersionInfo(assembly.Location);
+            Char delimiter = '.';
+            string[] version = fvi.FileVersion.Split(delimiter);
+            Text = "Original Desktop Editor" + " - v" + version[0] + "." + version[1] + "." + version[2];
         }
     }
 }

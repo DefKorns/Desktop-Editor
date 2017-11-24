@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Diagnostics;
 using System.Reflection;
 using System.Windows.Forms;
 
@@ -9,9 +10,12 @@ namespace Desktop_Editor
         public AboutBox()
         {
             InitializeComponent();
+            System.Reflection.Assembly assembly = System.Reflection.Assembly.GetExecutingAssembly();
+            FileVersionInfo fvi = FileVersionInfo.GetVersionInfo(assembly.Location);
+            string version = fvi.FileVersion;
             this.Text = String.Format("About {0}", AssemblyTitle);
             this.labelProductName.Text = AssemblyProduct;
-            this.labelVersion.Text = String.Format("Version {0}", AssemblyVersion);
+            this.labelVersion.Text = String.Format("Version {0}", version);
             this.labelCopyright.Text = AssemblyCopyright;
            // this.labelCompanyName.Text = AssemblyCompany;
             this.textBoxDescription.Text = textBoxDescription.Text;
@@ -36,14 +40,13 @@ namespace Desktop_Editor
             }
         }
 
-        public string AssemblyVersion
+     /*   public string AssemblyVersion
         {
             get
             {
                 return Assembly.GetExecutingAssembly().GetName().Version.ToString();
             }
-        }
-
+        }*/
         public string AssemblyDescription
         {
             get
@@ -83,7 +86,7 @@ namespace Desktop_Editor
             }
         }
 
-        public string AssemblyCompany
+        /*public string AssemblyCompany
         {
             get
             {
@@ -94,7 +97,7 @@ namespace Desktop_Editor
                 }
                 return ((AssemblyCompanyAttribute)attributes[0]).Company;
             }
-        }
+        }*/
         #endregion
 
         private void textBoxDescription_TextChanged(object sender, EventArgs e)
