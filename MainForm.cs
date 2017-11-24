@@ -281,7 +281,9 @@ namespace Desktop_Editor
             checkBoxNoLowLat.Enabled = false;
             checkBoxFrame.Enabled = false;
             comboBoxBoostFX.Enabled = false;
+            comboBoxBorder.Enabled = false;
             label7.Enabled = false;
+            importFrame.Enabled = false;
             comboBoxVol.Enabled = true;
             string boxartDirectory = AppDomain.CurrentDomain.BaseDirectory; Path.GetDirectoryName(Assembly.GetExecutingAssembly().Location);
             string fullboxartPath = new Uri(boxartDirectory).LocalPath + @"boxart_downloader\boxart_hack\boxart";
@@ -685,7 +687,6 @@ namespace Desktop_Editor
         }
         private void importFrame_Click(object sender, EventArgs e)
         {
-            
             OpenFileDialog customBorder = new OpenFileDialog();
             customBorder.Filter = "Custom frames|*.png;*.txt";
             customBorder.Multiselect = true;
@@ -696,35 +697,64 @@ namespace Desktop_Editor
                 foreach (string file in customBorder.FileNames)
                 {
                     File.Copy(file, Path.Combine(fullborderPath, Path.GetFileName(file)), true);
-                    //string lulu = Path.GetFileName(file);
-                    string lulu = Path.GetFileNameWithoutExtension(file);
-                    string[] bilulu = lulu.Split('_');
-                    MessageBox.Show(bilulu[0]);
-
-                    /*
-                 string lulu = Path.GetFileName(file);
-                            string[] volume = volumeArgument.Split(null);
-                    */
-                     if (!textBoxArguments.Text.Contains(" --use-decorative-frame /var/lib/hakchi/rootfs/usr/share/borders/" + bilulu[0] + "_" + bilulu[1] + "_" + bilulu[2]))
-                         textBoxArguments.AppendText(" --use-decorative-frame /var/lib/hakchi/rootfs/usr/share/borders/" + bilulu[0] + "_" + bilulu[1] + "_" + bilulu[2]);
+                    string bordersGet = Path.GetFileNameWithoutExtension(file);
+                    string[] splitter = {"_4_3", "_pixel_perfect", "_thumbnail" };
+                    string[] customBorderName = bordersGet.Split(splitter, StringSplitOptions.RemoveEmptyEntries);
+                    if (comboBoxBorder.SelectedIndex == 0)
+                    {
+                        if (!textBoxArguments.Text.Contains(" --use-decorative-frame /var/lib/hakchi/rootfs/usr/share/borders/" + customBorderName[0] + "_4_3"))
+                            textBoxArguments.AppendText(" --use-decorative-frame /var/lib/hakchi/rootfs/usr/share/borders/" + customBorderName[0] + "_4_3");
+                    }
+                    else 
+                    {
+                        if (!textBoxArguments.Text.Contains(" --use-decorative-frame /var/lib/hakchi/rootfs/usr/share/borders/" + customBorderName[0] + "_pixel_perfect"))
+                            textBoxArguments.AppendText(" --use-decorative-frame /var/lib/hakchi/rootfs/usr/share/borders/" + customBorderName[0] + "_pixel_perfect");
+                    }
                 }
             }
         }
         private void checkBoxFrame_CheckedChanged(object sender, EventArgs e)
         {
+            
             if (checkBoxFrame.Checked == false)
             {
                 importFrame.Enabled = false;
-              /*  if (textBoxArguments.Text.Contains(" --use-decorative-frame /var/lib/hakchi/rootfs/usr/share/borders/" + "CUSTOMBORDER"))
-                    textBoxArguments.Text = textBoxArguments.Text.Replace(" --use-decorative-frame /var/lib/hakchi/rootfs/usr/share/borders/" + "CUSTOMBORDER", "");*/
+                comboBoxBorder.Enabled = false;
+                if (textBoxArguments.Text.Contains("--use-decorative-frame"))
+                {
+                    string argsborder = textBoxArguments.Text;
+                    string[] cutter = new string[] { " --use-decorative-frame" };
+                    string[] result;
+                    result = argsborder.Split(cutter, StringSplitOptions.None);
+                    textBoxArguments.Text = textBoxArguments.Text.Replace(" --use-decorative-frame" + result[1], "");
+                }
             }
             if (checkBoxFrame.Checked == true)
             {
                 importFrame.Enabled = true;
-              /*  if (!textBoxArguments.Text.Contains(" --use-decorative-frame /var/lib/hakchi/rootfs/usr/share/borders/" + "CUSTOMBORDER"))
-                    textBoxArguments.AppendText(" --use-decorative-frame /var/lib/hakchi/rootfs/usr/share/borders/" + "CUSTOMBORDER");*/
+                comboBoxBorder.Enabled = true;
+                comboBoxBorder.SelectedIndex = 0;
             }
 
+        }
+
+        private void comboBoxBorder_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            string curItem = comboBoxBorder.SelectedItem.ToString();
+            if (curItem == "Pixel Perfect")
+            {
+                if (textBoxArguments.Text.Contains("--use-decorative-frame"))
+                {
+                    textBoxArguments.Text = textBoxArguments.Text.Replace("_4_3", "_pixel_perfect");
+                }
+            }
+            if (curItem == "4:3")
+            {
+                if (textBoxArguments.Text.Contains("--use-decorative-frame"))
+                {
+                    textBoxArguments.Text = textBoxArguments.Text.Replace("_pixel_perfect", "_4_3");
+                }
+            }
         }
     }
 }

@@ -46,6 +46,9 @@ namespace Desktop_Editor
             this.listViewGames = new System.Windows.Forms.ListView();
             this.gameName = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
             this.groupBoxOptions = new System.Windows.Forms.GroupBox();
+            this.comboBoxBorder = new System.Windows.Forms.ComboBox();
+            this.checkBoxFrame = new System.Windows.Forms.CheckBox();
+            this.importFrame = new System.Windows.Forms.Button();
             this.buttonBrowseImage = new System.Windows.Forms.Button();
             this.comboBoxBoostFX = new System.Windows.Forms.ComboBox();
             this.textBoxGameCode = new System.Windows.Forms.TextBox();
@@ -80,8 +83,6 @@ namespace Desktop_Editor
             this.buttonAddHack = new System.Windows.Forms.Button();
             this.openFileDialogNes = new System.Windows.Forms.OpenFileDialog();
             this.openFileDialogImage = new System.Windows.Forms.OpenFileDialog();
-            this.importFrame = new System.Windows.Forms.Button();
-            this.checkBoxFrame = new System.Windows.Forms.CheckBox();
             this.menuStrip1.SuspendLayout();
             this.groupBoxOptions.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBoxArt)).BeginInit();
@@ -182,6 +183,7 @@ namespace Desktop_Editor
             // 
             // groupBoxOptions
             // 
+            this.groupBoxOptions.Controls.Add(this.comboBoxBorder);
             this.groupBoxOptions.Controls.Add(this.checkBoxFrame);
             this.groupBoxOptions.Controls.Add(this.importFrame);
             this.groupBoxOptions.Controls.Add(this.buttonBrowseImage);
@@ -217,6 +219,42 @@ namespace Desktop_Editor
             this.groupBoxOptions.TabIndex = 2;
             this.groupBoxOptions.TabStop = false;
             this.groupBoxOptions.Text = "Game options";
+            // 
+            // comboBoxBorder
+            // 
+            this.comboBoxBorder.Enabled = false;
+            this.comboBoxBorder.FormattingEnabled = true;
+            this.comboBoxBorder.Items.AddRange(new object[] {
+            "4:3",
+            "Pixel Perfect"});
+            this.comboBoxBorder.Location = new System.Drawing.Point(142, 341);
+            this.comboBoxBorder.Name = "comboBoxBorder";
+            this.comboBoxBorder.Size = new System.Drawing.Size(54, 21);
+            this.comboBoxBorder.TabIndex = 34;
+            this.comboBoxBorder.Text = "4:3";
+            this.comboBoxBorder.SelectedIndexChanged += new System.EventHandler(this.comboBoxBorder_SelectedIndexChanged);
+            // 
+            // checkBoxFrame
+            // 
+            this.checkBoxFrame.AutoSize = true;
+            this.checkBoxFrame.Location = new System.Drawing.Point(8, 345);
+            this.checkBoxFrame.Name = "checkBoxFrame";
+            this.checkBoxFrame.Size = new System.Drawing.Size(131, 17);
+            this.checkBoxFrame.TabIndex = 33;
+            this.checkBoxFrame.Text = "--use-decorative-frame";
+            this.checkBoxFrame.UseVisualStyleBackColor = true;
+            this.checkBoxFrame.CheckedChanged += new System.EventHandler(this.checkBoxFrame_CheckedChanged);
+            // 
+            // importFrame
+            // 
+            this.importFrame.Enabled = false;
+            this.importFrame.Location = new System.Drawing.Point(206, 340);
+            this.importFrame.Name = "importFrame";
+            this.importFrame.Size = new System.Drawing.Size(77, 24);
+            this.importFrame.TabIndex = 32;
+            this.importFrame.Text = "Import Frame";
+            this.importFrame.UseVisualStyleBackColor = true;
+            this.importFrame.Click += new System.EventHandler(this.importFrame_Click);
             // 
             // buttonBrowseImage
             // 
@@ -576,28 +614,6 @@ namespace Desktop_Editor
             // 
             this.openFileDialogNes.Multiselect = true;
             // 
-            // importFrame
-            // 
-            this.importFrame.Enabled = false;
-            this.importFrame.Location = new System.Drawing.Point(138, 340);
-            this.importFrame.Name = "importFrame";
-            this.importFrame.Size = new System.Drawing.Size(77, 24);
-            this.importFrame.TabIndex = 32;
-            this.importFrame.Text = "Import Frame";
-            this.importFrame.UseVisualStyleBackColor = true;
-            this.importFrame.Click += new System.EventHandler(this.importFrame_Click);
-            // 
-            // checkBoxFrame
-            // 
-            this.checkBoxFrame.AutoSize = true;
-            this.checkBoxFrame.Location = new System.Drawing.Point(8, 345);
-            this.checkBoxFrame.Name = "checkBoxFrame";
-            this.checkBoxFrame.Size = new System.Drawing.Size(131, 17);
-            this.checkBoxFrame.TabIndex = 33;
-            this.checkBoxFrame.Text = "--use-decorative-frame";
-            this.checkBoxFrame.UseVisualStyleBackColor = true;
-            this.checkBoxFrame.CheckedChanged += new System.EventHandler(this.checkBoxFrame_CheckedChanged);
-            // 
             // MainForm
             // 
             this.ClientSize = new System.Drawing.Size(609, 636);
@@ -676,6 +692,7 @@ namespace Desktop_Editor
         private OpenFileDialog openFileDialogImage;
         private Button importFrame;
         private CheckBox checkBoxFrame;
+        private ComboBox comboBoxBorder;
     }
 }
 
