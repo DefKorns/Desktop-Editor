@@ -17,12 +17,12 @@ tools\clovershell.exe exec "cat /etc/issue" > tools\version
 FOR /F "tokens=4 delims= " %%a IN (tools\version) DO CALL :CHECKVERSION %%a %%b
 :CHECKVERSION 
 if [%1] == [dp-sneseur-nerd] goto SNES
-if [%1] == [dp-snesusa-nerd] goto SNES
 if [%1] == [dp-neseur-nerd] goto NES
-if [%1] == [dp-nesusa-nerd] goto NES
 if [%1] == [dp-nes-nerd] goto NES
 if [%1] == [dp-shvc-nerd] goto SNES
 if [%1] == [dp-hvc-nerd] goto NES
+if [%1] == [dp-snesusa-nerd] goto SNES
+if [%1] == [dp-nesusa-nerd] goto NES
 :SNES
 ECHO Looking for SNES Classic Edition files. Please wait...
 for /f "delims=" %%i in (tools\gamecodessnes) do tools\clovershell.exe pull /var/lib/hakchi/squashfs/usr/share/games/%%i/%%i.desktop 2>NUL

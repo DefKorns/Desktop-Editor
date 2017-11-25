@@ -13,7 +13,7 @@ for /f "delims=: tokens=*" %%A in ('findstr /b ::: "%~f0"') do @echo(%%A
 set OLDPATH=%PATH%
 set PATH=%PATH%;..\tools
 echo Make sure that your SNES/NES Mini Classic is connected to PC and turned on, also close hakchi2 if it's opened.
-rem choice /d y /t 5 > nul
+choice /d y /t 5 > nul
 @echo off
 if NOT ERRORLEVEL 0 goto customframes
 tools\clovershell.exe exec "rm /var/lib/hakchi/rootfs/etc/init.d/S52defkornsdesktophack"
@@ -34,12 +34,12 @@ goto install
 FOR /F "tokens=4 delims= " %%a IN (tools\version) DO CALL :CHECKVERSION %%a %%b
 :CHECKVERSION 
 if [%1] == [dp-sneseur-nerd] goto SNESEURUSA
-if [%1] == [dp-snesusa-nerd] goto SNESEURUSA
 if [%1] == [dp-neseur-nerd] goto NESEURUSA
-if [%1] == [dp-nesusa-nerd] goto NESEURUSA
 if [%1] == [dp-nes-nerd] goto NESEURUSA
 if [%1] == [dp-shvc-nerd] goto SUPERFAMICOM
 if [%1] == [dp-hvc-nerd] goto FAMICOM
+if [%1] == [dp-snesusa-nerd] goto SNESEURUSA
+if [%1] == [dp-nesusa-nerd] goto NESEURUSA
 :SNESEURUSA
 ECHO Uploading SNES Classic Edition files. Please wait...
 cd boxart_hack
