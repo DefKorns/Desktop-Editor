@@ -412,7 +412,8 @@ namespace Desktop_Editor
                 string[] name = File.ReadAllLines(gamesToShow[listViewGames.SelectedItems[0].Index].path);
                 name[4] = "Name=" + textBoxName.Text;
 
-                File.WriteAllLines(gamesToShow[listViewGames.SelectedItems[0].Index].path, name);
+                //  File.WriteAllLines(gamesToShow[listViewGames.SelectedItems[0].Index].path, name);
+                File.WriteAllText(gamesToShow[listViewGames.SelectedItems[0].Index].path, string.Join("\n", name));
             }
             if (listViewGames.SelectedItems.Count > 0)
             {
@@ -439,8 +440,9 @@ namespace Desktop_Editor
                     rawtitle[16] = "SortRawTitle=" + textBoxRawTitle.Text;
                 }
 
-                File.WriteAllLines(gamesToShow[listViewGames.SelectedItems[0].Index].path, rawtitle);
-  
+                //File.WriteAllLines(gamesToShow[listViewGames.SelectedItems[0].Index].path, rawtitle);
+                File.WriteAllText(gamesToShow[listViewGames.SelectedItems[0].Index].path, string.Join("\n", rawtitle));
+
             }
         }
         private void textBoxPublisher_TextChanged(object sender, EventArgs e)
@@ -458,7 +460,8 @@ namespace Desktop_Editor
                 {
                     publisher[17] = "SortRawPublisher=" + textBoxPublisher.Text;
                 }
-                File.WriteAllLines(gamesToShow[listViewGames.SelectedItems[0].Index].path, publisher);
+                //File.WriteAllLines(gamesToShow[listViewGames.SelectedItems[0].Index].path, publisher);
+                File.WriteAllText(gamesToShow[listViewGames.SelectedItems[0].Index].path, string.Join("\n", publisher));
             }
         }
         private void textBoxArguments_TextChanged(object sender, EventArgs e)
@@ -478,7 +481,8 @@ namespace Desktop_Editor
                     string exec = args[2].Substring( 0, 83);
                     args[2] = exec + textBoxArguments.Text;
                 }
-                File.WriteAllLines(gamesToShow[listViewGames.SelectedItems[0].Index].path, args);
+                //File.WriteAllLines(gamesToShow[listViewGames.SelectedItems[0].Index].path, args);
+                File.WriteAllText(gamesToShow[listViewGames.SelectedItems[0].Index].path, string.Join("\n", args));
             }
         }
         private void maskedTextBoxReleaseDate_TextChanged(object sender, EventArgs e)
@@ -496,8 +500,9 @@ namespace Desktop_Editor
                 {
                     relDate[14] = "ReleaseDate=" + maskedTextBoxReleaseDate.Text;
                 }
-                    File.WriteAllLines(gamesToShow[listViewGames.SelectedItems[0].Index].path, relDate);
-                }
+                //File.WriteAllLines(gamesToShow[listViewGames.SelectedItems[0].Index].path, relDate);
+                File.WriteAllText(gamesToShow[listViewGames.SelectedItems[0].Index].path, string.Join("\n", relDate));
+            }
             }
         private void radioButtonOne_CheckedChanged(object sender, EventArgs e)
         {
@@ -515,7 +520,8 @@ namespace Desktop_Editor
                     player[12] = "Players=1";
                     player[13] = "Simultaneous=0";
                 }
-                File.WriteAllLines(gamesToShow[listViewGames.SelectedItems[0].Index].path, player);
+                //File.WriteAllLines(gamesToShow[listViewGames.SelectedItems[0].Index].path, player);
+                File.WriteAllText(gamesToShow[listViewGames.SelectedItems[0].Index].path, string.Join("\n", player));
             }
         }
         private void radioButtonTwo_CheckedChanged(object sender, EventArgs e)
@@ -534,7 +540,8 @@ namespace Desktop_Editor
                     multiplayer[12] = "Players=2";
                     multiplayer[13] = "Simultaneous=0";
                 }
-                File.WriteAllLines(gamesToShow[listViewGames.SelectedItems[0].Index].path, multiplayer);
+                //  File.WriteAllLines(gamesToShow[listViewGames.SelectedItems[0].Index].path, multiplayer);
+                File.WriteAllText(gamesToShow[listViewGames.SelectedItems[0].Index].path, string.Join("\n", multiplayer));
             }
         }
         private void radioButtonTwoSim_CheckedChanged(object sender, EventArgs e)
@@ -553,7 +560,8 @@ namespace Desktop_Editor
                     playerSim[12] = "Players=2";
                     playerSim[13] = "Simultaneous=1";
                 }
-                File.WriteAllLines(gamesToShow[listViewGames.SelectedItems[0].Index].path, playerSim);
+                //File.WriteAllLines(gamesToShow[listViewGames.SelectedItems[0].Index].path, playerSim);
+                File.WriteAllText(gamesToShow[listViewGames.SelectedItems[0].Index].path, string.Join("\n", playerSim));
             }
 
         }
@@ -631,6 +639,14 @@ namespace Desktop_Editor
                         else
                         {
                             checkBoxFrame.Checked = false;
+                        }
+                        if (line.Contains("--retroarch"))
+                        {
+                            checkBoxRetroarch.Checked = true;
+                        }
+                        else
+                        {
+                            checkBoxRetroarch.Checked = false;
                         }
                         if (line.Contains("-no-lowlatency"))
                         {
@@ -710,13 +726,13 @@ namespace Desktop_Editor
                     string[] customBorderName = bordersGet.Split(splitter, StringSplitOptions.RemoveEmptyEntries);
                     if (comboBoxBorder.SelectedIndex == 0)
                     {
-                        if (!textBoxArguments.Text.Contains(" --use-decorative-frame /var/lib/hakchi/rootfs/borders/" + customBorderName[0] + "_4_3"))
-                            textBoxArguments.AppendText(" --use-decorative-frame /var/lib/hakchi/rootfs/borders/" + customBorderName[0] + "_4_3");
+                        if (!textBoxArguments.Text.Contains(" --use-decorative-frame /var/lib/hakchi/rootfs/borders/" + customBorderName[0] + "_4_3" + " "))
+                            textBoxArguments.AppendText(" --use-decorative-frame /var/lib/hakchi/rootfs/borders/" + customBorderName[0] + "_4_3" + " ");
                     }
                     else 
                     {
-                        if (!textBoxArguments.Text.Contains(" --use-decorative-frame /var/lib/hakchi/rootfs/borders/" + customBorderName[0] + "_pixel_perfect"))
-                            textBoxArguments.AppendText(" --use-decorative-frame /var/lib/hakchi/rootfs/borders/" + customBorderName[0] + "_pixel_perfect");
+                        if (!textBoxArguments.Text.Contains(" --use-decorative-frame /var/lib/hakchi/rootfs/borders/" + customBorderName[0] + "_pixel_perfect" + " "))
+                            textBoxArguments.AppendText(" --use-decorative-frame /var/lib/hakchi/rootfs/borders/" + customBorderName[0] + "_pixel_perfect" + " ");
                     }
                 }
             }
@@ -753,14 +769,14 @@ namespace Desktop_Editor
             {
                 if (textBoxArguments.Text.Contains("--use-decorative-frame"))
                 {
-                    textBoxArguments.Text = textBoxArguments.Text.Replace("_4_3", "_pixel_perfect");
+                    textBoxArguments.Text = textBoxArguments.Text.Replace("_4_3", "_pixel_perfect" + " ");
                 }
             }
             if (curItem == "4:3")
             {
                 if (textBoxArguments.Text.Contains("--use-decorative-frame"))
                 {
-                    textBoxArguments.Text = textBoxArguments.Text.Replace("_pixel_perfect", "_4_3");
+                    textBoxArguments.Text = textBoxArguments.Text.Replace("_pixel_perfect", "_4_3" + " ");
                 }
             }
         }
