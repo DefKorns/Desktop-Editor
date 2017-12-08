@@ -10,7 +10,7 @@ ls  -l "$squashfs$gamepath" | grep 'CLV-P-' | awk '{ print $9 }' | while read ga
   if [ -f "$rootfs/boxart/$gamecode.png" ]; then
     mount -o bind "$rootfs/boxart/$gamecode.png" "$squashfs$gamepath/${gamecode}/${gamecode}.png"
   fi
-  if [ -f "$installpath/boxart/${gamecode}_small.png" ]; then
+  if [ -f "$rootfs/boxart/${gamecode}_small.png" ]; then
     mount -o bind "$rootfs/boxart/${gamecode}_small.png" "$squashfs$gamepath/${gamecode}/${gamecode}_small.png"
   fi
   if [ -f "$rootfs/boxart/$gamecode.desktop" ]; then
