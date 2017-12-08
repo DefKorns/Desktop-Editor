@@ -84,4 +84,4 @@ GOTO EOF
 if EXIST boxart.tar.gz del boxart.tar.gz
 if EXIST borders.tar.gz del borders.tar.gz
 set PATH=%OLDPATH%
-pause
+tools\clovershell.exe exec "reboot" 2>NUL
