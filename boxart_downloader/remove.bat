@@ -15,7 +15,8 @@ set PATH=%PATH%;..\tools
 echo Make sure that your SNES/NES Mini Classic is connected to PC and turned on, also close hakchi2 if it's opened.                                                                                    
 choice /d y /t 5 > nul
 @echo off
-tools\clovershell.exe exec "rm /var/lib/hakchi/rootfs/etc/init.d/S52defkornsdesktophack"
-tools\clovershell.exe exec "rm -r /var/lib/hakchi/rootfs/boxart/"
-tools\clovershell.exe exec "unset cfg_DefKorns_desktophack_enabled"
-tools\clovershell.exe exec "rm -r /var/lib/hakchi/rootfs/borders/"
+tools\clovershell.exe exec "rm /var/lib/hakchi/rootfs/etc/init.d/S52defkornsdesktophack" 2>NUL
+tools\clovershell.exe exec "rm -r /var/lib/hakchi/rootfs/boxart/" 2>NUL
+tools\clovershell.exe exec "unset cfg_DefKorns_desktophack_enabled" 2>NUL
+tools\clovershell.exe exec "rm -r /var/lib/hakchi/rootfs/borders/" 2>NUL
+tools\clovershell.exe exec "reboot" 2>NUL
